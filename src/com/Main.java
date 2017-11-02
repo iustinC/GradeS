@@ -25,5 +25,7 @@ public class Main {
         ui.prelungireTema();
         ui.afisareTeme();
 
+        ui.afisareTeme();
+
     }
 }
