@@ -26,6 +26,6 @@ public class Main {
         ui.afisareTeme();
 
         ui.afisareTeme();
-
+        ui.afisareTeme();
     }
 }
