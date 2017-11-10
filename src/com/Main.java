@@ -12,7 +12,8 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Console ui = new Console();
-        ui.afisareStudenti();
+        ui.runMenu();
+       /* ui.afisareStudenti();
         ui.afisareTeme();
         ui.deleteStudenti();
         ui.afisareStudenti();
@@ -23,7 +24,8 @@ public class Main {
         ui.updateTeme();
         ui.afisareTeme();
         ui.prelungireTema();
-        ui.afisareTeme();
+        ui.afisareTeme();*/
+
 
     }
 }

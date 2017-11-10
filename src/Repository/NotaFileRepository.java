@@ -1,17 +1,16 @@
 package Repository;
 
-import Domain.Student;
+import Domain.Nota;
 import Validator.Validator;
 import Validator.ValidationException;
 
-
 import java.io.*;
 
-public class StudentFileRepository extends InMemoryStudentRepository {
+public class NotaFileRepository extends InMemoryNotaRepository{
 
     private String fileName;
 
-    public StudentFileRepository(Validator<Student> validator, String fileName) {
+    public NotaFileRepository(Validator<Nota> validator, String fileName) {
         super(validator);
         this.fileName = fileName;
 
@@ -27,15 +26,12 @@ public class StudentFileRepository extends InMemoryStudentRepository {
 
             while ((line = in.readLine()) != null){
                 String[] fields = line.split(";");
-
                 int idStudent = Integer.parseInt(fields[0]);
-                String numeStudent = fields[1];
-                int grupaStudent = Integer.parseInt(fields[2]);
-                String emailStudent = fields[3];
-                String cadruStudent = fields[4];
+                int numarTema = Integer.parseInt(fields[1]);
+                int valoareNota = Integer.parseInt(fields[2]);
 
-                Student student = new Student(idStudent, numeStudent, grupaStudent, emailStudent, cadruStudent);
-                super.save(student);
+                Nota nota = new Nota(idStudent, numarTema, valoareNota);
+                super.save(nota);
             }
         } catch (FileNotFoundException e) {
             System.out.println("Fisierul nu a fost gasit.");
@@ -46,18 +42,16 @@ public class StudentFileRepository extends InMemoryStudentRepository {
         }
     }
 
-
-    private void saveToFile() {/**
+    /**
      *  Save data to file
      */
+    private void saveToFile() {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(fileName, false))) {
-            super.findAll().forEach(student -> {
+            super.findAll().forEach(nota -> {
                 try {
-                    out.write(student.getId() + ";" +
-                            student.getNume() + ";" +
-                            String.valueOf(student.getGrupa()) + ";" +
-                            student.getEmail() + ";" +
-                            student.getCadruDidactic() + "\n");
+                    out.write(String.valueOf(nota.getIdStudent()) + ";" +
+                            String.valueOf(nota.getNumarTema()) + ";" +
+                            String.valueOf(nota.getValoare())+ "\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -66,6 +60,7 @@ public class StudentFileRepository extends InMemoryStudentRepository {
             System.out.println("I/O Error");
         }
     }
+    
 
     /**
      *  Save an entry
@@ -74,20 +69,23 @@ public class StudentFileRepository extends InMemoryStudentRepository {
      * @throws ValidationException after validation of entry
      */
     @Override
-    public Student save(Student entity) throws ValidationException {
-        Student returned = super.save(entity);
+    public Nota save(Nota entity) throws ValidationException {
+        Nota returned = super.save(entity);
         saveToFile();
         return returned;
     }
 
+    public static void metoda(){
+
+    }
     /**
      *  Delete an entry with a given id
-     * @param integer represents id of entry
+     * @param idNota represents id of entry
      * @return that entry that was removed
      */
     @Override
-    public Student delete(Integer integer) {
-        Student returned = super.delete(integer);
+    public Nota delete(String idNota) {
+        Nota returned = super.delete(idNota);
         saveToFile();
         return returned;
     }
@@ -99,8 +97,8 @@ public class StudentFileRepository extends InMemoryStudentRepository {
      * @throws ValidationException if the entry doesn`t exist
      */
     @Override
-    public Student update(Student entity) throws ValidationException {
-        Student returned = super.update(entity);
+    public Nota update(Nota entity) throws ValidationException {
+        Nota returned = super.update(entity);
         if (returned == null )
             saveToFile();
         else

@@ -1,4 +1,5 @@
-4;Alex;222;alex@gmail.com;bogdan
+1;numeAdaugat;224;email;numeAdaugat
+4;numeUpdatat;222;emailupdatat;didacticUpdatat
+5;andrei;225;emailll;iiii
 7;CRISTIUPDATAT;223;emailUpdatat;cadruUpdatat
 15;Andrei;225;andrei@gmail.com;ioan
-16;George;227;george@gmail.com;mircea

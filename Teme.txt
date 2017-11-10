@@ -1,3 +1,5 @@
-5;cerintaUpdatata;2;
+5;cerintaUpdatata;3;
+6;aaa;8;
 8;cmmmc;3;
+9;UI + repo;7;
 19;2 progra,e;10;

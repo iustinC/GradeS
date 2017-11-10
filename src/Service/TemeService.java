@@ -38,7 +38,8 @@ public class TemeService {
         repository.update(tema);
     }
 
-    public void prelungire(TemaLaborator tema, int saptamanaNoua) throws ValidationException{
+    public void prelungire(int numarTema, int saptamanaNoua) throws ValidationException{
+        TemaLaborator tema = repository.findOne(numarTema);
         if(saptamanaNoua >= saptamanaCurenta -1)
             throw new ValidationException("Saptamana data nu poate fi actualizata deoarce depaseste termenul");
         tema.setDeadline(saptamanaNoua);

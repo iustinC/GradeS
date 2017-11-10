@@ -7,7 +7,6 @@ public class TemaLaborator implements HasID<Integer>{
     private int numarTema;
     private String cerinta;
     private int deadline;
-    private int nota;
 
     public TemaLaborator(int numarTema, String cerinta, int deadline) {
         setId(numarTema);
@@ -70,5 +69,13 @@ public class TemaLaborator implements HasID<Integer>{
     @Override
     public void setId(Integer integer) {
         numarTema = integer;
+    }
+
+    public int getNumarTema() {
+        return numarTema;
+    }
+
+    public void setNumarTema(int numarTema) {
+        this.numarTema = numarTema;
     }
 }
