@@ -19,10 +19,7 @@ import Validator.ValidatorNota;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Console {
 
@@ -204,8 +201,11 @@ public class Console {
             System.out.print("Introduceti  numar tema =");
             numarTema = scanner.nextInt();
 
-            controllerTeme.delete(numarTema);
-            System.out.println("S-a sters  tema ");
+            Optional<TemaLaborator> tm = controllerTeme.delete(numarTema);
+            if(tm.isPresent())
+                System.out.println("S-a sters  tema ");
+            else
+                System.out.println("Nota nu exista");
 
         }
     }
@@ -220,9 +220,11 @@ public class Console {
             System.out.println("Introduceti numar tema = ");
             numarTema = scanner.nextInt();
 
-            controllerNote.delete(String.valueOf(idStudent) + " " + String.valueOf(numarTema));
-
-            System.out.println("S-a sters  nota ");
+            Optional<Nota> nt = controllerNote.delete(String.valueOf(idStudent) + " " + String.valueOf(numarTema));
+            if(nt.isPresent())
+                System.out.println("S-a sters  nota ");
+            else
+                System.out.println("Nota nu exista ");
 
         }
     }
@@ -239,8 +241,11 @@ public class Console {
             if(controllerNote.findStud(String.valueOf(idStudent)) == true)
                 System.out.println("Studentul are note nu se poate sterge \n");
             else {
-                controllerStudent.delete(idStudent);
-                System.out.println("Studentul a fost sters. \n");
+                Optional<Student> st = controllerStudent.delete(idStudent);
+                if(st.isPresent())
+                    System.out.println("Studentul a fost sters. \n");
+                else
+                    System.out.println("Studentul nu exista \n");
             }
         }
     }
@@ -283,6 +288,112 @@ public class Console {
             all.forEach(tema -> System.out.println(tema));
         }
     }
+
+    public class GetAllNoteFilteredByValoare implements Command{
+        @Override
+        public void execute() {
+            int valoareNota;
+            System.out.println("Introduceti valoare nota = ");
+            valoareNota = scanner.nextInt();
+            List<Nota> all = controllerNote.filterAndSortByValue(valoareNota);
+            System.out.println(all);
+        }
+    }
+
+    public class GetAllNoteFilteredByNumarTema implements Command{
+        @Override
+        public void execute() {
+            int numarTema;
+            System.out.println("Introduceti numar tema = ");
+            numarTema = scanner.nextInt();
+            List<Nota> all = controllerNote.filterAndSortByNumarTema(numarTema);
+            System.out.println(all);
+        }
+    }
+
+    public class GetAllNoteFilteredIdStudent implements Command{
+        @Override
+        public void execute() {
+            int idStudent;
+            System.out.println("Introduceti id student = ");
+            idStudent = scanner.nextInt();
+            List<Nota> all = controllerNote.filterAndSortByIdStudent(idStudent);
+            System.out.println(all);
+        }
+    }
+    public class GetAllTemeFilteredByDAndNr implements Command{
+        @Override
+        public void execute() {
+            int deadline, numarTema;
+            System.out.println("Introduceti deadline = ");
+            deadline = scanner.nextInt();
+            System.out.println("Introduceti numar tema = ");
+            numarTema = scanner.nextInt();
+            List<TemaLaborator> all = controllerTeme.filterAndSortByDeadlineAndNrTema(deadline,numarTema);
+            System.out.println(all);
+        }
+    }
+
+    public class GetAllTemeilteredByNumarTema implements Command{
+        @Override
+        public void execute() {
+            int numarTema;
+            System.out.println("Introduceti numar tema = ");
+            numarTema = scanner.nextInt();
+            List<TemaLaborator> all = controllerTeme.filterAndSortByNumarTema(numarTema);
+            System.out.println(all);
+        }
+    }
+
+    public class GetAllTemeFilteredByDeadline implements Command{
+        @Override
+        public void execute() {
+            int deadline;
+            System.out.println("Introduceti deadline = ");
+            deadline = scanner.nextInt();
+            List<TemaLaborator> all = controllerTeme.filterAndSortByDeadline(deadline);
+            System.out.println(all);
+        }
+    }
+
+    public class GetAllStudentsFilteredByIndrumator implements Command{
+        @Override
+        public void execute() {
+            List<Student> all = controllerStudent.filterAndSortByIndrumator();
+            System.out.println(all);
+        }
+    }
+
+    public class GetAllStudentsFilteredByMail implements Command{
+        @Override
+        public void execute() {
+            List<Student> all = controllerStudent.filterAndSortByMail();
+            System.out.println(all);
+        }
+    }
+
+    public class GetAllStudentsFilteredByGrupa implements Command{
+        @Override
+        public void execute() {
+            int grupa;
+            System.out.println("Introduceti grupa = ");
+            grupa = scanner.nextInt();
+            List<Student> all = controllerStudent.filterAndSortByGrupa(grupa);
+            System.out.println(all);
+        }
+    }
+
+    public class GetAllStudentsFilteredByNume implements  Command{
+        @Override
+        public void execute() {
+            String nume;
+            System.out.println("Introduceti nume partial = ");
+            scanner.nextLine();
+            nume = scanner.nextLine();
+            List<Student> all = controllerStudent.filterAndSortByName(nume);
+            System.out.println(all);
+        }
+    }
     private void createMenu()
     {
         mainMenu = new MenuCommand(" Meniu Principal");
@@ -295,6 +406,11 @@ public class Console {
         crudStudent.addCommand("2. Update Student" , new UpdateStudentCommand());
         crudStudent.addCommand("3. Delete Student", new DeleteStudentCommand());
         crudStudent.addCommand("4. Get all", new GetAllStudentCommand());
+        crudStudent.addCommand("5. Filter by indrumator", new GetAllStudentsFilteredByIndrumator());
+        crudStudent.addCommand("6. Filter by mail", new GetAllStudentsFilteredByMail());
+        crudStudent.addCommand("7. Filter by grupa", new GetAllStudentsFilteredByGrupa());
+        crudStudent.addCommand("8. Filter by nume", new GetAllStudentsFilteredByNume());
+
 
         crudTema.addCommand("0. Back to main menu", mainMenu);
         crudTema.addCommand("1. Add Tema de laborator", new ReadTemaCommand());
@@ -302,12 +418,20 @@ public class Console {
         crudTema.addCommand("3. Delete Tema de laborator", new DeleteTemaCommand());
         crudTema.addCommand("4. Prelungire nota", new PrelungireTemaCommand());
         crudTema.addCommand("5. Get all", new GetAllTemeCommand());
+        crudTema.addCommand("6. Filter by deadline", new GetAllTemeFilteredByDeadline());
+        crudTema.addCommand("7. Filter by numarTema", new GetAllTemeilteredByNumarTema());
+        crudTema.addCommand("8. Filter by deadline and numarTema", new GetAllTemeFilteredByDAndNr());
+
 
         crudNota.addCommand("0. Back to main menu", mainMenu);
         crudNota.addCommand("1. Add Nota", new ReadNotaCommand());
         crudNota.addCommand("2. Update nota", new UpdateNotaCommand());
         crudNota.addCommand("3. Delete nota", new DeleteNotaCommand());
         crudNota.addCommand("4. Get all", new GetAllNoteCommand());
+        crudNota.addCommand("5. Filter by valoare", new GetAllNoteFilteredByValoare());
+        crudNota.addCommand("6. Filter by numarTema", new GetAllNoteFilteredByNumarTema());
+        crudNota.addCommand("7. Filter by idStudent", new GetAllNoteFilteredIdStudent());
+
 
         mainMenu.addCommand("0. Exit" ,()-> {System.exit(0);});
         mainMenu.addCommand("1. Crud Student", crudStudent);

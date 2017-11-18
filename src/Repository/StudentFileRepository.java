@@ -6,6 +6,11 @@ import Validator.ValidationException;
 
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class StudentFileRepository extends InMemoryStudentRepository {
 
@@ -22,10 +27,11 @@ public class StudentFileRepository extends InMemoryStudentRepository {
      *  Read data from file
      */
     private void readFromFile(){
-        try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
-            String line;
-
-            while ((line = in.readLine()) != null){
+        Path path = Paths.get("Student.txt");
+        Stream<String> lines;
+        try  {
+            lines = Files.lines(path);
+            lines.forEach(line ->{
                 String[] fields = line.split(";");
 
                 int idStudent = Integer.parseInt(fields[0]);
@@ -35,15 +41,17 @@ public class StudentFileRepository extends InMemoryStudentRepository {
                 String cadruStudent = fields[4];
 
                 Student student = new Student(idStudent, numeStudent, grupaStudent, emailStudent, cadruStudent);
-                super.save(student);
-            }
+                try{
+                    super.save(student);
+                }
+                catch (ValidationException e){
+                    System.out.println(e.getMessage());
+                }
+            });
         } catch (FileNotFoundException e) {
             System.out.println("Fisierul nu a fost gasit.");
         } catch (IOException e) {
-            System.out.println("I/O Error.");
-        } catch (ValidationException e) {
-            System.out.println("Date eronate citite.");
-        }
+            System.out.println("I/O Error.");}
     }
 
 
@@ -86,10 +94,14 @@ public class StudentFileRepository extends InMemoryStudentRepository {
      * @return that entry that was removed
      */
     @Override
-    public Student delete(Integer integer) {
-        Student returned = super.delete(integer);
-        saveToFile();
-        return returned;
+    public Optional<Student> delete(Integer integer) {
+        Optional<Student> st = super.delete(integer);
+        if(st.isPresent()){
+            Optional<Student> returned = st;
+            saveToFile();
+            return returned;
+        }
+        return Optional.empty();
     }
 
     /**

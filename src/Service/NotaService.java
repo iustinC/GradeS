@@ -5,15 +5,17 @@ import Domain.Student;
 import Domain.TemaLaborator;
 import Repository.Repository;
 import Validator.ValidationException;
+import Service.Filter;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Predicate;
 
-public class NotaService {
+
+public class NotaService{
 
     private int saptamanaCurenta = 5;
 
@@ -29,7 +31,9 @@ public class NotaService {
         this.repositoryTeme = repoTeme;
     }
 
-    // Add a given entry
+    /**
+     *  Add a given entry
+     */
     public void add(Nota nota,String observatii) throws ValidationException {
         if(repositoryStudent.findOne(nota.getIdStudent()) == null)
             throw  new ValidationException("Studentul nu exista. \n");
@@ -49,6 +53,7 @@ public class NotaService {
         saveIdStudent(nota.getIdStudent(), tema.getNumarTema(), nota.getValoare(), tema.getDeadline(), saptamanaCurenta, observatii);
         repository.save(nota);
     }
+
     /**
      *  Writes in a file with id student as name modifications about his grades
      *
@@ -112,18 +117,31 @@ public class NotaService {
             e.printStackTrace();
         }
     }
-    // Return a set with all entries
+
+    /**
+     *
+     * @return a set with all entries
+     */
     public Set<Nota> getAll(){
         Set<Nota> all = new HashSet<>();
         repository.findAll().forEach(nota -> all.add(nota));
         return all;
     }
 
-    // Delete an entry by a given id
-    public void delete(String idNota){
-        repository.delete(idNota);
+    /**
+     *  Delete an entry by a given id
+     * @param idNota represents idNota given
+     */
+    public Optional<Nota> delete(String idNota){
+        return repository.delete(idNota);
     }
 
+    /**
+     *  Find if a student has a nota
+     * @param id represents id of student
+     * @return  true if student exists,
+     *          false, else
+     */
     public boolean findStud(String id){
         Set<Nota> all = this.getAll();
         for(Nota nota : all){
@@ -135,6 +153,7 @@ public class NotaService {
         }
         return false;
     }
+
     /**
      *  Update a given entry
      * @param nota represents new nota
@@ -157,6 +176,42 @@ public class NotaService {
             repository.update(nota);
         }
 
+    }
+
+    /**
+     *  Filter and sort note with valoare lower than a given one
+     * @param valoare represents valoare given
+     * @return a list that contains all note lower than @valoare and sorted by valoare
+     */
+    public List<Nota> filterAndSortByValue(int valoare){
+        List<Nota> all = new ArrayList<>();
+        all.addAll(this.getAll());
+        List<Nota> alll = Filter.filterAndSorter(all, Filter.areValoareaMaiMica(valoare), Filter.comparatorValoareNota);
+        return alll;
+    }
+
+    /**
+     *  Filter and sort note with a given numarTema
+     * @param numarTema represents numarTema given
+     * @return a list that contains all note with given numarTema and sorted by IdStudent
+     */
+    public List<Nota> filterAndSortByNumarTema(int numarTema){
+        List<Nota> all = new ArrayList<>();
+        all.addAll(this.getAll());
+        List<Nota> alll = Filter.filterAndSorter(all, Filter.toateNoteleDeLaTema(numarTema), Filter.comparatorIdStudentNota);
+        return alll;
+    }
+
+    /**
+     *  Filter and sort note with a given idStudent
+     * @param idStudent represents idStudent given
+     * @return a list that contains all note with a given idStudent and sorted by valoare
+     */
+    public List<Nota> filterAndSortByIdStudent(int idStudent){
+        List<Nota> all = new ArrayList<>();
+        all.addAll(this.getAll());
+        List<Nota> alll = Filter.filterAndSorter(all, Filter.noteleUnuiStudent(idStudent), Filter.comparatorValoareNota);
+        return alll;
     }
 
 }

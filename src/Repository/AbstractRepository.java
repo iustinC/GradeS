@@ -4,6 +4,7 @@ import Validator.Validator;
 import Validator.ValidationException;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 public abstract class AbstractRepository <E extends HasID<ID>, ID> implements Repository<E, ID> {
@@ -45,8 +46,8 @@ public abstract class AbstractRepository <E extends HasID<ID>, ID> implements Re
      * @return removed element
      */
     @Override
-    public E delete(ID id) {
-        return entities.remove(id);
+    public Optional <E> delete(ID id) {
+        return Optional.ofNullable(entities.remove(id));
     }
 
     @Override

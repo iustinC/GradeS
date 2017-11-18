@@ -5,6 +5,11 @@ import Validator.Validator;
 import Validator.ValidationException;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class NotaFileRepository extends InMemoryNotaRepository{
 
@@ -21,24 +26,27 @@ public class NotaFileRepository extends InMemoryNotaRepository{
      *  Read data from file
      */
     private void readFromFile(){
-        try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
-            String line;
-
-            while ((line = in.readLine()) != null){
+        Path path = Paths.get("Catalog.txt");
+        Stream<String> lines;
+        try {
+            lines = Files.lines(path);
+            lines.forEach(line ->{
                 String[] fields = line.split(";");
                 int idStudent = Integer.parseInt(fields[0]);
                 int numarTema = Integer.parseInt(fields[1]);
                 int valoareNota = Integer.parseInt(fields[2]);
 
                 Nota nota = new Nota(idStudent, numarTema, valoareNota);
-                super.save(nota);
-            }
+                try{
+                    super.save(nota);
+                }catch (ValidationException e){
+                    System.out.println(e.getMessage());
+                }
+            });
         } catch (FileNotFoundException e) {
             System.out.println("Fisierul nu a fost gasit.");
         } catch (IOException e) {
             System.out.println("I/O Error.");
-        } catch (ValidationException e) {
-            System.out.println("Date eronate citite.");
         }
     }
 
@@ -84,10 +92,14 @@ public class NotaFileRepository extends InMemoryNotaRepository{
      * @return that entry that was removed
      */
     @Override
-    public Nota delete(String idNota) {
-        Nota returned = super.delete(idNota);
-        saveToFile();
-        return returned;
+    public Optional<Nota> delete(String idNota) {
+        Optional<Nota> ret = super.delete(idNota);
+        if(ret.isPresent()){
+            Optional<Nota> returned = ret;
+            saveToFile();
+            return returned;
+        }
+        return Optional.empty();
     }
 
     /**

@@ -6,6 +6,11 @@ import Validator.Validator;
 import Validator.ValidationException;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class TemeFileRepository extends InMemoryTemeRepository {
 
@@ -20,10 +25,11 @@ public class TemeFileRepository extends InMemoryTemeRepository {
 
 
     private void readFromFile()  {
-        try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
-            String line;
-
-            while ((line = in.readLine()) != null){
+        Path path = Paths.get("Teme.txt");
+        Stream<String> lines;
+        try  {
+            lines = Files.lines(path);
+            lines.forEach(line ->{
                 String[] fields = line.split(";");
 
                 int numarTema = Integer.parseInt(fields[0]);
@@ -31,14 +37,16 @@ public class TemeFileRepository extends InMemoryTemeRepository {
                 int deadline = Integer.parseInt(fields[2]);
 
                 TemaLaborator tema = new TemaLaborator(numarTema, cerintaTema, deadline);
-                super.save(tema);
-            }
+                try{
+                    super.save(tema);
+                }catch (ValidationException e){
+                    System.out.println(e.getMessage());
+                }
+            });
         } catch (FileNotFoundException e) {
             System.out.println("Fisierul nu a fost gasit.");
         } catch (IOException e) {
             System.out.println("I/O Error.");
-        } catch (ValidationException e) {
-            System.out.println("Date eronate citite.");
         }
     }
 
@@ -80,10 +88,14 @@ public class TemeFileRepository extends InMemoryTemeRepository {
      * @return that entry that was removed
      */
     @Override
-    public TemaLaborator delete(Integer integer) {
-        TemaLaborator returned = super.delete(integer);
-        saveToFile();
-        return returned;
+    public Optional<TemaLaborator> delete(Integer integer) {
+        Optional<TemaLaborator> ret = super.delete(integer);
+        if(ret.isPresent()){
+            Optional<TemaLaborator> returned = ret;
+            saveToFile();
+            return returned;
+        }
+        return Optional.empty();
     }
     /**
      *  Update a given entry
