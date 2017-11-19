@@ -13,18 +13,7 @@ public class Main {
 	// write your code here
         Console ui = new Console();
         ui.runMenu();
-       /* ui.afisareStudenti();
-        ui.afisareTeme();
-        ui.deleteStudenti();
-        ui.afisareStudenti();
-        ui.deleteTeme();
-        ui.afisareTeme();
-        ui.updateStudent();
-        ui.afisareStudenti();
-        ui.updateTeme();
-        ui.afisareTeme();
-        ui.prelungireTema();
-        ui.afisareTeme();*/
+
 
 
     }
