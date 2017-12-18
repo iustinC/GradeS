@@ -11,7 +11,6 @@ public class ValidatorTeme implements Validator<TemaLaborator> {
         if(obj.getCerinta().compareTo("") == 0)
             error = error.concat("Cerinta nu poate fi nula \n");
 
-
         if(error != "")
             throw (new ValidationException(error));
     }

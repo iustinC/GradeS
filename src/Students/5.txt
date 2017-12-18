@@ -1,1 +1,4 @@
 Adaugare nota, 5, 4, 3, 5, null
+Adaugare nota, 6, 6, 8, 5, 
+Modificare nota, 6, 10, 8, 5, si-a reparat greseala
+Adaugare nota, 4, 8, 11, 5, 

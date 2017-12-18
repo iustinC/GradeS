@@ -1,5 +1,5 @@
-1;numeAdaugat;224;email;numeAdaugat
-4;numeUpdatat;222;emailupdatat;didacticUpdatat
-5;andrei;225;emailll;iiii
-7;CRISTIUPDATAT;223;emailUpdatat;cadruUpdatat
-15;Andrei;225;andrei@gmail.com;ioan
+5;andrei;225;andrei@gmail.com;goerge
+6;eduard;221;eduard@gmail.com;gabriel
+11;iustin;225;iustin@gmail.com;george
+15;andrei;225;andrei@gmail.com;ioan
+17;andrei;226;email@email.com;sergiuu

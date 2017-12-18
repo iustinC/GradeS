@@ -1,5 +1,5 @@
+4;vectori;11;
 5;cerintaUpdatata;3;
-6;aaa;8;
-8;cmmmc;3;
-9;UI + repo;7;
-19;2 progra,e;10;
+6;aaa;7;
+7;UI + repo;10;
+8;alteceva ;6;

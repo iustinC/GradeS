@@ -4,6 +4,10 @@ import Domain.Nota;
 import Domain.Student;
 import Domain.TemaLaborator;
 import Repository.Repository;
+import Utils.ListEvent;
+import Utils.ListEventType;
+import Utils.Observable;
+import Utils.Observer;
 import Validator.ValidationException;
 import Service.Filter;
 
@@ -11,11 +15,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 
-public class NotaService{
+public class NotaService implements Observable<Nota> {
 
     private int saptamanaCurenta = 5;
 
@@ -24,6 +31,8 @@ public class NotaService{
     private Repository<Student, Integer> repositoryStudent;
 
     private Repository<TemaLaborator, Integer> repositoryTeme;
+
+    private ArrayList<Observer<Nota>> noteObservs = new ArrayList<>();
 
     public NotaService(Repository<Nota, String> repository, Repository<Student, Integer> repoStud, Repository<TemaLaborator, Integer> repoTeme) {
         this.repository = repository;
@@ -34,7 +43,7 @@ public class NotaService{
     /**
      *  Add a given entry
      */
-    public void add(Nota nota,String observatii) throws ValidationException {
+    public Nota add(Nota nota,String observatii) throws ValidationException {
         if(repositoryStudent.findOne(nota.getIdStudent()) == null)
             throw  new ValidationException("Studentul nu exista. \n");
         if(repositoryTeme.findOne(nota.getNumarTema()) == null)
@@ -51,7 +60,20 @@ public class NotaService{
                 nota.setValoare(nota.getValoare() - (saptamanaCurenta - tema.getDeadline()) * 2);
 
         saveIdStudent(nota.getIdStudent(), tema.getNumarTema(), nota.getValoare(), tema.getDeadline(), saptamanaCurenta, observatii);
-        repository.save(nota);
+        Nota saved = repository.save(nota);
+        if(saved == null){
+            ListEvent<Nota> event = createEvent(ListEventType.ADD, saved, repository.findAll());
+            notifyObservers(event);
+        }
+        return saved;
+    }
+
+    public List<Student> getAllStuds(){
+        return StreamSupport.stream(repositoryStudent.findAll().spliterator(), false).collect(Collectors.toList());
+    }
+
+    public List<TemaLaborator> getAllTeme(){
+        return StreamSupport.stream(repositoryTeme.findAll().spliterator(), false).collect(Collectors.toList());
     }
 
     /**
@@ -133,7 +155,12 @@ public class NotaService{
      * @param idNota represents idNota given
      */
     public Optional<Nota> delete(String idNota){
-        return repository.delete(idNota);
+        Optional<Nota> deleted = repository.delete(idNota);
+        if(deleted.isPresent()){
+            ListEvent<Nota> event = createEvent(ListEventType.REMOVE, deleted.get(), repository.findAll());
+            notifyObservers(event);
+        }
+        return deleted;
     }
 
     /**
@@ -150,6 +177,17 @@ public class NotaService{
             if(strings[0].equals(id) )
                 return true;
 
+        }
+        return false;
+    }
+
+    public boolean findTema(int numarTema){
+        Set<Nota> all = this.getAll();
+        for(Nota nota : all){
+            String not = nota.getId();
+            String[] strings = not.split(" ");
+            if(Integer.valueOf(strings[1]) == numarTema )
+                return true;
         }
         return false;
     }
@@ -171,11 +209,12 @@ public class NotaService{
         Nota notaCurenta = repository.findOne(nota.getId());
 
         if(notaCurenta.getValoare() < nota.getValoare()){
+            Nota updated = repository.update(nota);
+            ListEvent<Nota> event = createEvent(ListEventType.UPDATE, updated, repository.findAll());
+            notifyObservers(event);
             TemaLaborator tema = repositoryTeme.findOne(nota.getNumarTema());
             updateIdStudent(nota.getIdStudent(), tema.getNumarTema(), nota.getValoare(), tema.getDeadline(), saptamanaCurenta, observatii);
-            repository.update(nota);
         }
-
     }
 
     /**
@@ -213,6 +252,52 @@ public class NotaService{
         List<Nota> alll = Filter.filterAndSorter(all, Filter.noteleUnuiStudent(idStudent), Filter.comparatorValoareNota);
         return alll;
     }
+    /**
+     *  Add a specified observer
+     * @param o represents the observer
+     */
+    @Override
+    public void addObserver(Observer<Nota> o) {
+        noteObservs.add(o);
+    }
 
+    /**
+     *  Remove a specified observer
+     * @param o represents the observer
+     */
+    @Override
+    public void removeObserver(Observer<Nota> o) {
+        noteObservs.add(o);
+    }
+
+    /**
+     *  Notify all observers
+     * @param event represents a list with events to be updated in observers
+     */
+    @Override
+    public void notifyObservers(ListEvent<Nota> event) {
+        noteObservs.forEach(temaLaboratorObserver -> temaLaboratorObserver.notifyEvent(event));
+    }
+
+    /**
+     *  Create an event of last modification
+     * @param type represents type of event
+     * @param elem
+     * @param l
+     * @param <E>
+     * @return a new event with last modification
+     */
+    private <E> ListEvent<E> createEvent(ListEventType type, final E elem, final Iterable<E> l) {
+        return new ListEvent<E>(type){
+            @Override
+            public Iterable<E> getList(){return l;}
+            @Override
+            public E getElement(){return elem;}
+        };
+    }
+
+    public List<Nota> getAllNote(){
+        return StreamSupport.stream(repository.findAll().spliterator(),false).collect(Collectors.toList());
+    }
 }
 

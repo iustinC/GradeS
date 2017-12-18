@@ -20,7 +20,7 @@ import Validator.ValidatorNota;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.*;
-
+/*
 public class Console {
 
     private StudentFileRepository repoStud = new StudentFileRepository(new ValidatorStudent(),"Student.txt");
@@ -572,4 +572,4 @@ public class Console {
         }
     }*/
 
-}
+

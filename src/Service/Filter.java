@@ -3,6 +3,7 @@ package Service;
 import Domain.Nota;
 import Domain.Student;
 import Domain.TemaLaborator;
+import org.omg.CORBA.INTERNAL;
 
 import java.util.Comparator;
 import java.util.List;
@@ -14,16 +15,16 @@ public class  Filter {
      *  Predicate to check if the cadruDidactic of student is Andrei
      * @return
      */
-    public static Predicate<Student> esteIndrumatorAndrei(){
-        return student -> student.getCadruDidactic().equals("Andrei");
+    public static Predicate<Student> verificareIndrumator(String nume){
+        return student -> student.getCadruDidactic().toLowerCase().contains(nume);
     }
 
     /**
      *  Predicate to check if email of student cotains '.ro' or '.com'
      * @return
      */
-    public static Predicate<Student> verificareMail(){
-        return student -> student.getEmail().contains(".com") || student.getEmail().contains(".ro");
+    public static Predicate<Student> verificareMail(String string){
+        return student -> student.getEmail().contains(string);
     }
 
     public static Predicate<Student> verificareNume(String numePartial){
@@ -35,8 +36,12 @@ public class  Filter {
      * @param grupa represents the given grupa of student
      * @return
      */
-    public static Predicate<Student> verificareGrupa(int grupa){
-        return student -> student.getGrupa() == grupa;
+    public static Predicate<Student> verificareGrupa(String grupa){
+        return student -> student.getGrupa() == Integer.valueOf(grupa);
+    }
+
+    public static Predicate<Student> verificareId(String id){
+        return student -> student.getId() < Integer.valueOf(id);
     }
 
     /**
@@ -68,8 +73,8 @@ public class  Filter {
      * @param numarTema represents numarTema given
      * @return
      */
-    public static Predicate<TemaLaborator> esteMaiMicaSauEgalaNumarTema(int numarTema){
-        return tema -> tema.getNumarTema() <= numarTema;
+    public static Predicate<TemaLaborator> esteMaiMicaNrTema(int numarTema){
+        return tema -> tema.getNumarTema() < numarTema;
     }
 
     /**
@@ -78,8 +83,12 @@ public class  Filter {
      * @param numarTema represents numarTema given
      * @return
      */
-    public static Predicate<TemaLaborator> deadlineMaiMicNumarTemaMaiMare(int saptamana, int numarTema){
+    /*public static Predicate<TemaLaborator> deadlineMaiMicNumarTemaMaiMare(int saptamana, int numarTema){
         return areDeadlineulMaiMic(saptamana).and(esteMaiMicaSauEgalaNumarTema(numarTema));
+    }*/
+
+    public static Predicate<TemaLaborator> contineCerinta(String cerinta){
+        return tema -> tema.getCerinta().contains(cerinta);
     }
 
     /**
