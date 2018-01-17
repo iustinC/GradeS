@@ -76,7 +76,11 @@ public class Student implements HasID<Integer> {
 
         Student student = (Student) o;
 
-        return nume != null ? nume.equals(student.nume) : student.nume == null;
+        if (idStudent != student.idStudent) return false;
+        if (grupa != student.grupa) return false;
+        if (nume != null ? !nume.equals(student.nume) : student.nume != null) return false;
+        if (email != null ? !email.equals(student.email) : student.email != null) return false;
+        return cadruDidactic != null ? cadruDidactic.equals(student.cadruDidactic) : student.cadruDidactic == null;
     }
 
     @Override

@@ -1,8 +1,7 @@
 package UI.GUI;
 
-import Repository.NotaFileRepository;
-import Repository.StudentFileRepository;
-import Repository.TemeFileRepository;
+import Domain.Student;
+import Repository.*;
 import Service.NotaService;
 import Service.StudentService;
 import Service.TemeService;
@@ -28,14 +27,23 @@ import java.util.ResourceBundle;
 
 public class ControllerRootLayout {
 
-    TemeFileRepository repoTeme = new TemeFileRepository(new ValidatorTeme(),"Teme.txt");
-    TemeService serviceTeme = new TemeService(repoTeme);
+    //TemeFileRepository repoTeme = new TemeFileRepository(new ValidatorTeme(),"Teme.txt");
+    /*TemeRepository repoTeme = new TemeRepository(new ValidatorTeme());
+    TemeService serviceTeme = new TemeService(repoTeme);*/
+    TemeService serviceTeme;
 
-    StudentFileRepository repoStud = new StudentFileRepository(new ValidatorStudent(),"Student.txt");
-    StudentService serviceStudent = new StudentService(repoStud);
 
-    NotaFileRepository repoNote = new NotaFileRepository(new ValidatorNota(), "Catalog.txt");
-    NotaService serviceNote = new NotaService(repoNote,repoStud,repoTeme);
+    //StudentFileRepository repoStud = new StudentFileRepository(new ValidatorStudent(),"Student.txt");
+   /* StudentRepository repoStud = new StudentRepository(new ValidatorStudent());
+    StudentService serviceStudent = new StudentService(repoStud);*/
+   StudentService serviceStudent;
+
+
+    //NotaFileRepository repoNote = new NotaFileRepository(new ValidatorNota(), "Catalog.txt");
+    /*NoteRepository repoNote = new NoteRepository(new ValidatorNota());
+    NotaService serviceNote = new NotaService(repoNote,repoStud,repoTeme);*/
+    NotaService serviceNote;
+
 
     @FXML
     public  AnchorPane anchorPane;
@@ -63,19 +71,17 @@ public class ControllerRootLayout {
         btnStudenti.getStyleClass().add("button_home");
         btnTeme.getStyleClass().add("button_home");
         btnNote.getStyleClass().add("button_home");
-
     }
 
     @FXML
     public void initStudentiView(){
-
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/UI/GUI/StudentsLayout.fxml"));
             AnchorPane studentsPane = (AnchorPane) loader.load();
             anchorPane.getChildren().setAll(studentsPane);
             ControllerStudents controllerStudents = (ControllerStudents) loader.getController();
-            controllerStudents.setController(serviceStudent,serviceNote);
+            controllerStudents.setController(serviceStudent, serviceNote);
             serviceStudent.addObserver(controllerStudents);
 
         }catch (IOException e){
@@ -110,6 +116,12 @@ public class ControllerRootLayout {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void setService(StudentService st, TemeService tm, NotaService nt){
+        this.serviceStudent = st;
+        this.serviceTeme = tm;
+        this.serviceNote = nt;
     }
 
 }

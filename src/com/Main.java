@@ -1,16 +1,15 @@
 package com;
 
+import Domain.Nota;
 import Domain.Student;
-import Repository.NotaFileRepository;
-import Repository.StudentFileRepository;
-import Repository.TemeFileRepository;
+import Domain.TemaLaborator;
+import Repository.*;
 import Service.NotaService;
 import Service.StudentService;
 import Service.TemeService;
 
-import UI.GUI.ControllerRootLayout;
-import UI.GUI.StudentController;
-import UI.GUI.StudentView;
+import UI.GUI.*;
+import Validator.ValidationException;
 import Validator.ValidatorNota;
 import Validator.ValidatorTeme;
 import Validator.ValidatorStudent;
@@ -21,6 +20,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -35,51 +35,46 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import sun.plugin.javascript.navig.Anchor;
 import javafx.scene.control.TextField;
 
 import javax.tools.Tool;
 import java.io.IOException;
+import java.util.List;
+
 
 
 public class Main extends Application {
 
-    //private StudentFileRepository repoStud = new StudentFileRepository(new ValidatorStudent(),"Student.txt");
-    //private TemeFileRepository repoTeme = new TemeFileRepository(new ValidatorTeme(),"Teme.txt");
-    //private NotaFileRepository repoNote = new NotaFileRepository(new ValidatorNota(), "Catalog.txt");
     public static Stage st;
-    //private StudentService controllerStudent = new StudentService(repoStud);
-    //private TemeService controllerTeme = new TemeService(repoTeme);
-    //private NotaService controllerNote = new NotaService(repoNote,repoStud,repoTeme);
-
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         st = primaryStage;
-        primaryStage.setTitle("Hello World");
-        AnchorPane root=initView();
-        Scene scene = new Scene(root, 800, 500);
+        primaryStage.setTitle("");
+        AnchorPane root = loginView();
+        Scene scene = new Scene(root, 377, 381);
         scene.getStylesheets().add("Resources/CSS/stylesheets.css");
         primaryStage.setScene(scene);
         //primaryStage.setResizable(false);
         primaryStage.show();
     }
 
-    public static AnchorPane initView()
-    {   /*
-        StudentController ctrl=new StudentController(controllerStudent);
-        controllerStudent.addObserver(ctrl);
-        StudentView view = new StudentView(ctrl);
-        ctrl.setView(view);
-        return view.getView();*/
+    public static void logOut(){
+        Scene scene = new Scene(Main.loginView(), 377, 381);
+        scene.getStylesheets().add("Resources/CSS/stylesheets.css");
+               /* Main.st.setWidth(1000);
+                Main.st.setHeight(500);*/
+        Main.st.setScene(scene);
+        Main.st.centerOnScreen();}
+
+    public static AnchorPane loginView(){
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/UI/GUI/RootLayout.fxml"));
+            loader.setLocation(Main.class.getResource("/UI/GUI/LoginLayout.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
-            ControllerRootLayout controllerRootLayout = loader.getController();
-            anchorPane.getStyleClass().add("pane");
+            //anchorPane.getStyleClass().add("pane");
             return anchorPane;
-        }catch (IOException e){
+        }catch (IOException e) {
             e.printStackTrace();
         }
         return null;
@@ -90,8 +85,14 @@ public class Main extends Application {
        /* Console ui = new Console();
         ui.runMenu();
        */
-       launch(args);
 
+        /*try {
+            tm.update(new TemaLaborator(1, "in", 15));
+        }catch (ValidationException e){
+            System.out.println(e.getMessage());
+        }*/
+
+        launch(args);
 
     }
 }

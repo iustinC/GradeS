@@ -9,11 +9,22 @@ public class Nota implements HasID<String>{
     private int numarTema;
     private int valoare;
 
-    public Nota( int idStudent, int numarTema, int valoare) {
+    public int getSaptPredarii() {
+        return saptPredarii;
+    }
+
+    public void setSaptPredarii(int saptPredarii) {
+        this.saptPredarii = saptPredarii;
+    }
+
+    private int saptPredarii;
+
+    public Nota( int idStudent, int numarTema, int valoare, int saptPredarii) {
         this.setId(String.valueOf(idStudent) + " " + String.valueOf(numarTema));
         this.idStudent = idStudent;
         this.numarTema = numarTema;
         this.valoare = valoare;
+        this.saptPredarii = saptPredarii;
     }
 
     @Override

@@ -3,14 +3,25 @@ package Repository;
 import Validator.Validator;
 import Validator.ValidationException;
 
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public abstract class AbstractRepository <E extends HasID<ID>, ID> implements Repository<E, ID> {
+
+    static final String url = "jdbc:sqlserver://localhost\\DESKTOP-HLOMB7K:1433;database=LAB13;integratedSecurity=true";
+    static final String jdbc_driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    static Connection conn = null;
+    static Statement statement = null;
+
     private Map<ID, E> entities = new TreeMap<>();
 
-    private Validator<E> validator;
+    protected Validator<E> validator;
 
     AbstractRepository(Validator<E> validator){
         this.validator = validator;
@@ -46,7 +57,7 @@ public abstract class AbstractRepository <E extends HasID<ID>, ID> implements Re
      * @return removed element
      */
     @Override
-    public Optional <E> delete(ID id) {
+    public Optional<E> delete(ID id) {
         return Optional.ofNullable(entities.remove(id));
     }
 
@@ -75,5 +86,13 @@ public abstract class AbstractRepository <E extends HasID<ID>, ID> implements Re
     @Override
     public Iterable<E> findAll() {
         return entities.values();
+    }
+
+    @Override
+    public List<E> getAll(){return StreamSupport.stream(entities.values().spliterator(), false).collect(Collectors.toList());}
+
+    @Override
+    public List<E> between(int index, int page){
+        return null;
     }
 }

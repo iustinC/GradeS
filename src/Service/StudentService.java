@@ -152,7 +152,12 @@ public class StudentService implements Observable<Student> {
     }
 
     public List<Student> getAllStudents(){
-        return StreamSupport.stream(repository.findAll().spliterator(), false).collect(Collectors.toList());
+        //return StreamSupport.stream(repository.findAll().spliterator(), false).collect(Collectors.toList());
+        return repository.getAll();
+    }
+
+    public List<Student> getBetween(int index, int page){
+        return repository.between(index, page);
     }
 
     /**

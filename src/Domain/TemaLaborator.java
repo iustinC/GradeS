@@ -30,6 +30,8 @@ public class TemaLaborator implements HasID<Integer>{
 
         TemaLaborator that = (TemaLaborator) o;
 
+        if (numarTema != that.numarTema) return false;
+        if (deadline != that.deadline) return false;
         return cerinta != null ? cerinta.equals(that.cerinta) : that.cerinta == null;
     }
 

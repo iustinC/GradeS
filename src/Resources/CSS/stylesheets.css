@@ -1,3 +1,4 @@
+/*
 .pane{
     -fx-background-color : #39414e
 }
@@ -22,7 +23,7 @@
 }
 .separator *.line {
     -fx-border-style: solid;
-    -fx-border-width: 1 1 1 1; /* its make really one-pixel-border */
+    -fx-border-width: 1 1 1 1; !* its make really one-pixel-border *!
     -fx-border-color: #495463;
 }
 .text-field{
@@ -60,4 +61,39 @@
 .table_view {
     -fx-selection-bar: red;
 }
+.tab-header-background{
+    -fx-background-color:   #d3d3d3
+}
+.tab{
+    -fx-background-color:   #d3d3d3
+}
 
+*/
+.paneUL{
+    -fx-background-color:   #078fcb;
+}
+.button{
+    -fx-background-color:  #078fcb;
+}
+.tab{
+    -fx-background-color:  #078fcb;
+}
+.tab-header-background{
+    -fx-background-color: #078fcb;
+    -fx-text-fill: #ffffff;
+}
+.filler,.column-header,.show-hide-columns-button {
+    -fx-background-color: #dddddd, white, white;
+    -fx-font-weight: bold;
+}
+
+.column-header:hover {
+    -fx-background-color: #dddddd, white, #f8f8f8;
+}
+.column-header-background > .filler {
+    -fx-border-color: transparent transparent transparent transparent;
+    /*-fx-border-insets: 0 1 0 0;*/
+}
+.column-drag-header {
+    -fx-background-color: #2fb254;
+}

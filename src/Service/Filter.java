@@ -3,7 +3,6 @@ package Service;
 import Domain.Nota;
 import Domain.Student;
 import Domain.TemaLaborator;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.Comparator;
 import java.util.List;
@@ -115,6 +114,9 @@ public class  Filter {
         return nota -> nota.getValoare() < notaData;
     }
 
+    public static Predicate<Nota> areSaptPredariiMaiMica(int sapt){
+        return nota -> nota.getSaptPredarii() < sapt;
+    }
     /**
      *  Predicate to check if nota has a given numarTema
      * @param numarTema represents numarTema given

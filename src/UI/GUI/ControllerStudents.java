@@ -7,7 +7,12 @@ import Service.StudentService;
 import Utils.ListEvent;
 import Utils.Observable;
 import Utils.Observer;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,6 +30,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import com.Main;
@@ -58,29 +65,30 @@ public class ControllerStudents implements Observer<Student> {
     @FXML
     AnchorPane anchorPaneStudents;
     @FXML
-    Button btnBack;
+    JFXButton btnBack;
     @FXML
-    Button btnAddStudent;
+    JFXButton btnAddStudent;
     @FXML
-    CheckBox checkBoxId;
+    JFXTextField textFieldId;
     @FXML
-    TextField textFieldId;
+    JFXTextField textfieldNume;
     @FXML
-    CheckBox checkBoxNume;
+    JFXTextField textfieldEmail;
     @FXML
-    TextField textfieldNume;
+    JFXTextField textfieldCadru;
     @FXML
-    CheckBox checkBoxEmail;
+    JFXComboBox comboBoxGrupa;
     @FXML
-    TextField textfieldEmail;
+    JFXButton btnPrevious;
     @FXML
-    CheckBox checkBoxCadru;
+    JFXButton btnForward;
     @FXML
-    TextField textfieldCadru;
+    JFXComboBox comboBoxItems;
     @FXML
-    CheckBox checkBoxGrupa;
-    @FXML
-    ComboBox comboBoxGrupa;
+    JFXButton btnSignOut;
+
+    IntegerProperty index = new SimpleIntegerProperty(3);
+    IntegerProperty page = new SimpleIntegerProperty(0);
 
 
     StudentService serviceStudent;
@@ -89,7 +97,7 @@ public class ControllerStudents implements Observer<Student> {
 
     ObservableList<String> grupa =
             FXCollections.observableArrayList(
-                    "220",
+                    "0",
                     "221",
                     "222",
                     "223",
@@ -98,14 +106,38 @@ public class ControllerStudents implements Observer<Student> {
                     "226",
                     "227"
             );
+    ObservableList<String> items =
+            FXCollections.observableArrayList(
+                    "3",
+                    "5",
+                    "10"
+            );
+
+    public void initialize(){
+        setTableColumns();
+        setButtons();
+    }
 
     public ControllerStudents() {
 
     }
 
-    public void initialize(){
-
+    public void setTableColumns(){
         tableColumnId.setCellValueFactory(new PropertyValueFactory<Student, String>("id"));
+        tableViewStudents.setRowFactory(a->new TableRow<Student>(){
+            private Tooltip tooltip = new Tooltip();
+            @Override
+            public void updateItem(Student person, boolean empty) {
+                super.updateItem(person, empty);
+                if (person == null) {
+                    setTooltip(null);
+                } else {
+                    tooltip.setText(person.getNume()+" "+person.getCadruDidactic());
+                    tooltip.setFont(Font.font(15));
+                    setTooltip(tooltip);
+                }
+            }
+        });
         tableColumnNume.setCellValueFactory(new PropertyValueFactory<Student, String>("nume"));
         tableColumnGrupa.setCellValueFactory(new PropertyValueFactory<Student, String>("grupa"));
         tableColumnEmail.setCellValueFactory(new PropertyValueFactory<Student, String>("email"));
@@ -113,8 +145,8 @@ public class ControllerStudents implements Observer<Student> {
         tableColumnActiune.setCellValueFactory(new PropertyValueFactory<Student, Student>("actiune"));
         tableColumnActiune.setCellValueFactory(e -> new ReadOnlyObjectWrapper<>(e.getValue()));
         tableColumnActiune.setCellFactory(e -> new TableCell<Student, Student>(){
-            private Button btnDelete = new Button("Delete");
-            private Button btnUpdate = new Button("Update");
+            private JFXButton btnDelete = new JFXButton("Delete");
+            private JFXButton btnUpdate = new JFXButton("Update");
             private HBox hbox;
 
             @Override
@@ -133,16 +165,17 @@ public class ControllerStudents implements Observer<Student> {
                 setGraphic(hbox);
                 btnDelete.setOnAction(e ->
                 {   if(noteService.findStud(String.valueOf(student.getId())))
-                    {
-                        Alert message=new Alert(Alert.AlertType.ERROR);
-                        message.setTitle("Mesaj eroare");
-                        message.setContentText("Studentul are nota si nu poate fi sters");
-                        message.showAndWait();
-                    }
-                    else
-                        serviceStudent.delete(student.getId());
+                {
+                    Alert message=new Alert(Alert.AlertType.ERROR);
+                    message.setTitle("Mesaj eroare");
+                    message.setContentText("Studentul are nota si nu poate fi sters");
+                    message.showAndWait();
+                }
+                else
+                    serviceStudent.delete(student.getId());
                 });
-
+                btnUpdate.setTextFill(Color.WHITE);
+                btnDelete.setTextFill(Color.WHITE);
                 btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -158,7 +191,7 @@ public class ControllerStudents implements Observer<Student> {
                             controller.setService(serviceStudent);
                             Stage stage = new Stage();
                             stage.setTitle("Update");
-                            Scene addScene = new Scene(root, 450, 210);
+                            Scene addScene = new Scene(root, 300, 250);
                             addScene.getStylesheets().add("Resources/CSS/stylesheets.css");
                             stage.setScene(addScene);
                             stage.setResizable(false);
@@ -174,10 +207,20 @@ public class ControllerStudents implements Observer<Student> {
                 btnUpdate.getStyleClass().add("button_home");
             }
         });
+    }
+
+    public void setButtons(){
+        comboBoxItems.setItems(items);
+        comboBoxItems.getSelectionModel().selectFirst();
+        comboBoxGrupa.setItems(grupa);
+        comboBoxGrupa.getSelectionModel().selectFirst();
+
+        btnBack.getStyleClass().add("button_home");
+        btnPrevious.setDisable(true);
         btnBack.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Scene scene = new Scene(Main.initView(), 800, 500);
+                Scene scene = new Scene(ControllerLogin.initView(), 800, 500);
                 scene.getStylesheets().add("Resources/CSS/stylesheets.css");
                /* Main.st.setWidth(1000);
                 Main.st.setHeight(500);*/
@@ -197,7 +240,7 @@ public class ControllerStudents implements Observer<Student> {
                     controller.setService(serviceStudent);
                     Stage stage = new Stage();
                     stage.setTitle("My New Stage Title");
-                    Scene addScene = new Scene(root, 450, 210);
+                    Scene addScene = new Scene(root, 320, 235);
                     addScene.getStylesheets().add("Resources/CSS/stylesheets.css");
                     stage.setScene(addScene);
                     stage.setResizable(false);
@@ -209,43 +252,115 @@ public class ControllerStudents implements Observer<Student> {
                 }
             }
         });
-        comboBoxGrupa.setItems(grupa);
-        comboBoxGrupa.getSelectionModel().selectFirst();
-        btnBack.getStyleClass().add("button_home");
+        comboBoxItems.valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                index.set(Integer.valueOf(newValue.toString()));
+                page.setValue(0);
+                if(index.getValue() + page.getValue() >= serviceStudent.getAllStudents().size())
+                    btnForward.setDisable(true);
+                else
+                    btnForward.setDisable(false);
+                loadData();
+            }
+        });
+        page.addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if(newValue.intValue() == 0)
+                    btnPrevious.setDisable(true);
+                else
+                    btnPrevious.setDisable(false);
+                if(newValue.intValue() >= serviceStudent.getAllStudents().size() - index.getValue())
+                    btnForward.setDisable(true);
+                else
+                    btnForward.setDisable(false);
+
+            }
+        });
+        btnForward.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                page.setValue(index.getValue() + page.getValue());
+                loadData();
+
+            }
+        });
+        btnPrevious.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                page.setValue(page.getValue() - index.getValue());
+                loadData();
+            }
+        });
+
+        btnSignOut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Main.logOut();
+            }
+        });
     }
 
     public void filter(){
+        boolean ok1=false,ok2=false,ok3=false,ok4=false,ok5=false;
         Predicate<Student> predFinal = (student->true);
-        if(checkBoxId.isSelected())
             if(!textFieldId.getText().equals(""))
                 predFinal = predFinal.and(Filter.verificareId( textFieldId.getText()));
-        if(checkBoxNume.isSelected())
+            else
+                ok1 = true;
             if(!textfieldNume.getText().equals(""))
                 predFinal = predFinal.and(Filter.verificareNume(textfieldNume.getText()));
-        if(checkBoxEmail.isSelected())
+            else
+                ok2 = true;
             if(!textfieldEmail.getText().equals(""))
                 predFinal = predFinal.and(Filter.verificareMail(textfieldEmail.getText()));
-        if(checkBoxCadru.isSelected())
+            else
+                ok3 = true;
             if(!textfieldCadru.getText().equals(""))
                 predFinal = predFinal.and(Filter.verificareIndrumator(textfieldCadru.getText()));
-        if(checkBoxGrupa.isSelected())
+            else
+                ok4 = true;
+        if(!comboBoxGrupa.getSelectionModel().getSelectedItem().toString().equals("0"))
             predFinal = predFinal.and(Filter.verificareGrupa(comboBoxGrupa.getSelectionModel().getSelectedItem().toString()));
-        List<Student> filtered = this.serviceStudent.getAllStudents().stream().filter(predFinal).collect(Collectors.toList());
-        tableViewStudents.setItems(FXCollections.observableArrayList(filtered));
+        else
+            ok5=true;
+        if(!(ok1 == true && ok2 == true && ok3 == true && ok4 == true && ok5 == true)){
+            List<Student> filtered = this.serviceStudent.getAllStudents().stream().filter(predFinal).collect(Collectors.toList());
+            model.setAll(FXCollections.observableArrayList(filtered));
+            btnForward.setDisable(true);
+            btnPrevious.setDisable(true);
+            comboBoxItems.setDisable(true);
+        }
+        else{
+            loadData();
+            btnForward.setDisable(false);
+            btnPrevious.setDisable(false);
+            comboBoxItems.setDisable(false);
+        }
     }
 
 
     @Override
     public void notifyEvent(ListEvent<Student> e) {
-        model.setAll(StreamSupport.stream(e.getList().spliterator(),false)
-                .collect(Collectors.toList()));
+        loadData();
+    }
+
+    public void loadData(){
+        if(index.getValue() + page.getValue() >= serviceStudent.getAllStudents().size())
+            btnForward.setDisable(true);
+        else
+            btnForward.setDisable(false);
+        model.setAll(FXCollections.observableArrayList(this.serviceStudent.getBetween(index.getValue(), page.getValue())));
     }
 
     public void setController(StudentService service,NotaService noteService){
         this.noteService = noteService;
         this.serviceStudent = service;
-        this.model = FXCollections.observableArrayList(this.serviceStudent.getAllStudents());
+        this.model = FXCollections.observableArrayList(this.serviceStudent.getBetween(index.getValue(), page.getValue()));
         tableViewStudents.setItems(this.model);
+        if(this.serviceStudent.getAllStudents().size() <= index.getValue())
+            btnForward.setDisable(true);
     }
 
 }

@@ -17,8 +17,8 @@ public class ValidatorStudent implements Validator<Student> {
         if("".compareTo(obj.getNume()) == 1)
             error = error.concat("Numele nu poate fi vid \n");
 
-        if(obj.getGrupa() < 220 || obj.getGrupa() > 227)
-            error = error.concat("Grupa trebuie sa fie intre 220 si 227 \n");
+        if(obj.getGrupa() < 221 || obj.getGrupa() > 227)
+            error = error.concat("Grupa trebuie sa fie intre 221 si 227 \n");
 
         if(!obj.getCadruDidactic().matches("[a-zA-Z][a-zA-Z][ a-zA-Z]+"))
             error = error.concat("Numele cadrului didactic nu este valid\n");

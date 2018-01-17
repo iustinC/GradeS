@@ -83,7 +83,8 @@ public class TemeService implements Observable<TemaLaborator> {
     }
 
     public List<TemaLaborator> getAllTeme(){
-        return StreamSupport.stream(repository.findAll().spliterator(),false).collect(Collectors.toList());
+        //return StreamSupport.stream(repository.findAll().spliterator(),false).collect(Collectors.toList());
+        return repository.getAll();
     }
 
     /**
@@ -133,6 +134,10 @@ public class TemeService implements Observable<TemaLaborator> {
     @Override
     public void notifyObservers(ListEvent<TemaLaborator> event) {
         temeObservers.forEach(temaLaboratorObserver -> temaLaboratorObserver.notifyEvent(event));
+    }
+
+    public List<TemaLaborator> getBetween(int index, int page){
+        return repository.between(index, page);
     }
 
     /**

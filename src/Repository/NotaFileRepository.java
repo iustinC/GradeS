@@ -36,7 +36,7 @@ public class NotaFileRepository extends InMemoryNotaRepository{
                 int numarTema = Integer.parseInt(fields[1]);
                 int valoareNota = Integer.parseInt(fields[2]);
 
-                Nota nota = new Nota(idStudent, numarTema, valoareNota);
+                Nota nota = new Nota(idStudent, numarTema, valoareNota,5);
                 try{
                     super.save(nota);
                 }catch (ValidationException e){
@@ -86,7 +86,7 @@ public class NotaFileRepository extends InMemoryNotaRepository{
     public static void metoda(){
 
     }
-    /**
+   /**
      *  Delete an entry with a given id
      * @param idNota represents id of entry
      * @return that entry that was removed

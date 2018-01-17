@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Text;
 
 
 public class ControllerAdd {
@@ -56,7 +55,7 @@ public class ControllerAdd {
           @Override
           public void handle(ActionEvent event) {
               try{
-                  if (service.add(new Student(Integer.valueOf(textFieldId.getText()), textFieldNume.getText(), Integer.valueOf(textFieldGrupa.getText()), textFieldEmail.getText(), textFieldCadru.getText())) != null)
+                  if (service.add(new Student(1, textFieldNume.getText(), Integer.valueOf(textFieldGrupa.getText()), textFieldEmail.getText(), textFieldCadru.getText())) != null)
                       showMessage(Alert.AlertType.WARNING,"Warning","Studentul cu id-ul dat exista deja in baza de date.");
                   else
                       showMessage(Alert.AlertType.INFORMATION, "Salvare", "Studentul a fost salvat cu succes!");
