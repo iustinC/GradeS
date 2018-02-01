@@ -81,23 +81,63 @@ Note: If you do not want to use maven, just import the project and add the jars 
 The application connects to a SQL Server database that holds student, assignment, grades and accounts information. The information that it holds is as follows:
 
 1. Studenti
-  - idStudent
-  - nume
-  - email
-  - cadruDidactic
+    - idStudent
+    - nume
+    - email
+    - cadruDidactic
 2. Teme
-  - numarTema
-  - cerinta
-  - deadline
+    - numarTema
+    - cerinta
+    - deadline
 3. Note
-  - idStudent
-  - numarTema
-  - valoare
-  - saptamanaPredarii
+    - idStudent
+    - numarTema
+    - valoare
+    - saptamanaPredarii
 4. Utilizatori
-  - username
-  - pass
-  - email
-  - prioritate
+    - username
+    - pass
+    - email
+    - prioritate
+    
+ You can create this database on your own with the following MySQL:
+```
+ IF OBJECT_ID('Studenti', 'U') IS NOT NULL
+	DROP TABLE Studenti
+  CREATE TABLE Studenti(
+	idStudent INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	nume VARCHAR(255),
+	grupa INT, 
+	email VARCHAR(255) UNIQUE,
+	cadruDidactic VARCHAR(255)
+)
+
+IF OBJECT_ID('Teme', 'U') IS NOT NULL
+	DROP TABLE Teme
+CREATE TABLE Teme(
+	numarTema INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	cerinta VARCHAR(255) UNIQUE,
+	deadline INT
+)
+
+IF OBJECT_ID('Note', 'U') IS NOT NULL
+	DROP TABLE Note
+CREATE TABLE Note(
+	idStudent INT FOREIGN KEY REFERENCES dbo.Studenti(idStudent) ON DELETE CASCADE,
+	numarTema INT FOREIGN KEY REFERENCES dbo.Teme(numarTema) ON DELETE CASCADE,
+	PRIMARY KEY (idStudent,numarTema),
+	valoare INT,
+	saptamanaPredarii INT
+)
+
+IF OBJECT_ID('Utilizatori', 'U') IS NOT NULL
+	DROP TABLE Utilizatori
+CREATE TABLE Utilizatori(
+	username VARCHAR(255) PRIMARY KEY,
+	pass VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	prioritate VARCHAR(255) NOT NULL
+)
+```
 
 
