@@ -105,7 +105,7 @@ The application connects to a SQL Server database that holds student, assignment
     - email
     - prioritate
     
- You can create this database on your own with the following MySQL:
+ You can create this database on your own with the following SQL:
 ```
  IF OBJECT_ID('Studenti', 'U') IS NOT NULL
 	DROP TABLE Studenti
