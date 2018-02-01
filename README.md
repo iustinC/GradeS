@@ -19,10 +19,10 @@ There are 2 account types:
       - view your grades with observations from teacher
       - other information about you as student : your name, email, group, current grade, etc
 # Table of Contents
-* [USAGE](#Usage)
+* [USAGE](#usage)
 * [Requirements](#requirements)
-* [First Use Instructions](#First Use Instructions)
-* [Database](#Database)
+* [First Use Instructions](#first_use_instructions)
+* [Database](#database)
 
 
 # USAGE
