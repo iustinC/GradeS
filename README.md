@@ -58,9 +58,46 @@ On grades tab tab you can add/update/delete grades or you can filter them(you ca
 
 ![grafictopulgrupelor](https://user-images.githubusercontent.com/21144919/35700908-fed0da7c-079c-11e8-81f8-46c9665cde6d.png)
 
+# Requirements
+
+In order to successfully run this  app you need a few things:
+
+1. Java 1.8
+2. JavaFX 8
+3. [Jars.zip](https://github.com/farma1738/GradeS/files/1687100/Jars.zip)(include JARs and folder in modules)
+4. SQL Server (i used SQL Server Management Studio)
 
 
+# First Use Instructions
+1. Clone the GitHub repo to your computer
+2. Import the project in IntelliJ IDEA or any other IDE of your choice
+3. Import JARs
+4. Connect to database
 
+Note: If you do not want to use maven, just import the project and add the jars to your project externally.
 
+# Database
+
+The application connects to a SQL Server database that holds student, assignment, grades and accounts information. The information that it holds is as follows:
+
+1. Studenti
+  - idStudent
+  - nume
+  - email
+  - cadruDidactic
+2. Teme
+  - numarTema
+  - cerinta
+  - deadline
+3. Note
+  - idStudent
+  - numarTema
+  - valoare
+  - saptamanaPredarii
+4. Utilizatori
+  - username
+  - pass
+  - email
+  - prioritate
 
 
