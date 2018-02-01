@@ -18,6 +18,7 @@ There are 2 account types:
       - view all assignments
       - view your grades with observations from teacher
       - other information about you as student : your name, email, group, current grade, etc
+# Table of Contents
 
 # USAGE
 First time you can register 
@@ -74,7 +75,6 @@ In order to successfully run this  app you need a few things:
 3. Import JARs
 4. Connect to database
 
-Note: If you do not want to use maven, just import the project and add the jars to your project externally.
 
 # Database
 
