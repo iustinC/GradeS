@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="LAB13@localhost">
+  <database-model serializer="dbm" rdbms="MSSQL" format-version="4.4">
+    <root id="1">
+      <ServerType>standalone</ServerType>
+    </root>
+    <database id="2" parent="1" name="LAB13">
+      <ObjectId>7</ObjectId>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </database>
+    <database id="3" parent="1" name="master">
+      <ObjectId>1</ObjectId>
+    </database>
+    <database id="4" parent="1" name="tempdb">
+      <ObjectId>2</ObjectId>
+    </database>
+    <database id="5" parent="1" name="model">
+      <ObjectId>3</ObjectId>
+    </database>
+    <database id="6" parent="1" name="msdb">
+      <ObjectId>4</ObjectId>
+    </database>
+    <database id="7" parent="1" name="Test">
+      <ObjectId>5</ObjectId>
+    </database>
+    <database id="8" parent="1" name="FabricaDeMouseuri">
+      <ObjectId>6</ObjectId>
+    </database>
+    <schema id="9" parent="2" name="dbo">
+      <ObjectId>1</ObjectId>
+      <IntrospectionTimestamp>2018-01-11.22:20:42.273</IntrospectionTimestamp>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="10" parent="2" name="guest">
+      <ObjectId>2</ObjectId>
+    </schema>
+    <schema id="11" parent="2" name="INFORMATION_SCHEMA">
+      <ObjectId>3</ObjectId>
+    </schema>
+    <schema id="12" parent="2" name="sys">
+      <ObjectId>4</ObjectId>
+    </schema>
+    <schema id="13" parent="2" name="db_owner">
+      <ObjectId>16384</ObjectId>
+    </schema>
+    <schema id="14" parent="2" name="db_accessadmin">
+      <ObjectId>16385</ObjectId>
+    </schema>
+    <schema id="15" parent="2" name="db_securityadmin">
+      <ObjectId>16386</ObjectId>
+    </schema>
+    <schema id="16" parent="2" name="db_ddladmin">
+      <ObjectId>16387</ObjectId>
+    </schema>
+    <schema id="17" parent="2" name="db_backupoperator">
+      <ObjectId>16389</ObjectId>
+    </schema>
+    <schema id="18" parent="2" name="db_datareader">
+      <ObjectId>16390</ObjectId>
+    </schema>
+    <schema id="19" parent="2" name="db_datawriter">
+      <ObjectId>16391</ObjectId>
+    </schema>
+    <schema id="20" parent="2" name="db_denydatareader">
+      <ObjectId>16392</ObjectId>
+    </schema>
+    <schema id="21" parent="2" name="db_denydatawriter">
+      <ObjectId>16393</ObjectId>
+    </schema>
+    <table id="22" parent="9" name="Note">
+      <ObjectId>1413580074</ObjectId>
+      <CreatedTimestamp>2018-01-09.02:21:02.100</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-09.02:21:02.100</ModifiedTimestamp>
+    </table>
+    <table id="23" parent="9" name="Studenti">
+      <ObjectId>981578535</ObjectId>
+      <CreatedTimestamp>2018-01-08.22:12:46.657</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-09.02:21:02.100</ModifiedTimestamp>
+    </table>
+    <table id="24" parent="9" name="Teme">
+      <ObjectId>1061578820</ObjectId>
+      <CreatedTimestamp>2018-01-09.00:48:04.177</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-09.02:21:02.100</ModifiedTimestamp>
+    </table>
+    <table id="25" parent="9" name="Utilizatori">
+      <ObjectId>1525580473</ObjectId>
+      <CreatedTimestamp>2018-01-10.02:46:32.253</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-10.02:46:32.253</ModifiedTimestamp>
+    </table>
+    <column id="26" parent="22" name="idStudent">
+      <Position>1</Position>
+      <DataType>int|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="22" name="numarTema">
+      <Position>2</Position>
+      <DataType>int|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="22" name="valoare">
+      <Position>3</Position>
+      <DataType>int|0</DataType>
+    </column>
+    <index id="29" parent="22" name="PK__Note__4E5FA9FDB435C3D2">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idStudent
+numarTema</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="30" parent="22" name="PK__Note__4E5FA9FDB435C3D2">
+      <ObjectId>1429580131</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-01-09.02:21:02.100</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-09.02:21:02.100</ModifiedTimestamp>
+      <ColNames>idStudent
+numarTema</ColNames>
+      <UnderlyingIndexName>PK__Note__4E5FA9FDB435C3D2</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="31" parent="22" name="FK__Note__idStudent__5629CD9C">
+      <ObjectId>1445580188</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-01-09.02:21:02.100</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-09.02:21:02.100</ModifiedTimestamp>
+      <ColNames>idStudent</ColNames>
+      <RefTableId>981578535</RefTableId>
+      <RefSchemaName>dbo</RefSchemaName>
+      <RefTableName>Studenti</RefTableName>
+      <RefKeyName>PK__Studenti__35B1F88A8D665012</RefKeyName>
+      <RefColNames>idStudent</RefColNames>
+    </foreign-key>
+    <foreign-key id="32" parent="22" name="FK__Note__numarTema__571DF1D5">
+      <ObjectId>1461580245</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-01-09.02:21:02.100</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-09.02:21:02.100</ModifiedTimestamp>
+      <ColNames>numarTema</ColNames>
+      <RefTableId>1061578820</RefTableId>
+      <RefSchemaName>dbo</RefSchemaName>
+      <RefTableName>Teme</RefTableName>
+      <RefKeyName>PK__Teme__BEE51776578AB0ED</RefKeyName>
+      <RefColNames>numarTema</RefColNames>
+    </foreign-key>
+    <column id="33" parent="23" name="idStudent">
+      <Position>1</Position>
+      <DataType>int|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="34" parent="23" name="nume">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="35" parent="23" name="grupa">
+      <Position>3</Position>
+      <DataType>int|0</DataType>
+    </column>
+    <column id="36" parent="23" name="email">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="37" parent="23" name="cadruDidactic">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <index id="38" parent="23" name="PK__Studenti__35B1F88A8D665012">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idStudent</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <index id="39" parent="23" name="UQ__Studenti__AB6E6164278A218D">
+      <Position>2</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="40" parent="23" name="PK__Studenti__35B1F88A8D665012">
+      <ObjectId>997578592</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-01-08.22:12:46.657</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-08.22:12:46.657</ModifiedTimestamp>
+      <ColNames>idStudent</ColNames>
+      <UnderlyingIndexName>PK__Studenti__35B1F88A8D665012</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="41" parent="23" name="UQ__Studenti__AB6E6164278A218D">
+      <ObjectId>1013578649</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-01-08.22:12:46.663</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-08.22:12:46.663</ModifiedTimestamp>
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>UQ__Studenti__AB6E6164278A218D</UnderlyingIndexName>
+    </key>
+    <column id="42" parent="24" name="numarTema">
+      <Position>1</Position>
+      <DataType>int|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="43" parent="24" name="cerinta">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="44" parent="24" name="deadline">
+      <Position>3</Position>
+      <DataType>int|0</DataType>
+    </column>
+    <index id="45" parent="24" name="PK__Teme__BEE51776578AB0ED">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>numarTema</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <index id="46" parent="24" name="UQ__Teme__A3F788D6EE378244">
+      <Position>2</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cerinta</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="47" parent="24" name="PK__Teme__BEE51776578AB0ED">
+      <ObjectId>1077578877</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-01-09.00:48:04.177</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-09.00:48:04.177</ModifiedTimestamp>
+      <ColNames>numarTema</ColNames>
+      <UnderlyingIndexName>PK__Teme__BEE51776578AB0ED</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="48" parent="24" name="UQ__Teme__A3F788D6EE378244">
+      <ObjectId>1093578934</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-01-09.00:48:04.180</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-09.00:48:04.180</ModifiedTimestamp>
+      <ColNames>cerinta</ColNames>
+      <UnderlyingIndexName>UQ__Teme__A3F788D6EE378244</UnderlyingIndexName>
+    </key>
+    <column id="49" parent="25" name="username">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="25" name="pass">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="25" name="email">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="25" name="prioritate">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="53" parent="25" name="PK__Utilizat__F3DBC573E126CD8E">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>username</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="54" parent="25" name="PK__Utilizat__F3DBC573E126CD8E">
+      <ObjectId>1541580530</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-01-10.02:46:32.257</CreatedTimestamp>
+      <ModifiedTimestamp>2018-01-10.02:46:32.257</ModifiedTimestamp>
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>PK__Utilizat__F3DBC573E126CD8E</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
