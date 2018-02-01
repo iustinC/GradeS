@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPaneStudents" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.ControllerStudents">
+   <children>
+      <VBox alignment="BOTTOM_CENTER" layoutX="590.0" layoutY="14.0" prefHeight="486.0" prefWidth="222.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="596.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="434.0" prefWidth="194.0">
+               <children>
+                  <JFXButton fx:id="btnAddStudent" prefHeight="25.0" prefWidth="207.0" text="Add" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></JFXButton>
+                  <Label text="FILTERS">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <VBox alignment="TOP_CENTER" prefHeight="347.0" prefWidth="194.0" spacing="20.0">
+                     <children>
+                        <JFXTextField fx:id="textFieldId" alignment="CENTER" focusColor="#078fcb" labelFloat="true" onAction="#filter" promptText="ID" unFocusColor="#078fcb" />
+                        <JFXTextField fx:id="textfieldNume" alignment="CENTER" focusColor="#078fcb" labelFloat="true" onAction="#filter" promptText="Nume" unFocusColor="#078fcb" />
+                        <JFXTextField fx:id="textfieldEmail" alignment="CENTER" focusColor="#078fcb" labelFloat="true" onAction="#filter" promptText="Email" unFocusColor="#078fcb" />
+                        <JFXTextField fx:id="textfieldCadru" alignment="CENTER" focusColor="#078fcb" onAction="#filter" promptText="Cadru didactic" unFocusColor="#078fcb" />
+                        <JFXComboBox fx:id="comboBoxGrupa" onAction="#filter" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <JFXButton fx:id="btnBack" contentDisplay="GRAPHIC_ONLY" textFill="WHITE">
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" size="25" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <TableView fx:id="tableViewStudents" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="437.0" prefWidth="577.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tableColumnNume" prefWidth="75.0" text="Nume" />
+            <TableColumn fx:id="tableColumnGrupa" prefWidth="75.0" text="Grupa" />
+            <TableColumn fx:id="tableColumnEmail" prefWidth="125.0" text="Email" />
+            <TableColumn fx:id="tableColumnCadru" prefWidth="75.0" text="Cadru" />
+            <TableColumn fx:id="tableColumnActiune" prefWidth="150.0" text="Actiune" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnPrevious" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="228.0" layoutY="465.0" prefHeight="25.0" prefWidth="27.0" text="bbb" textFill="WHITE">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnForward" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="273.0" layoutY="465.0" nodeOrientation="RIGHT_TO_LEFT" text="fd" textFill="WHITE">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" nodeOrientation="LEFT_TO_RIGHT" rotate="180.0" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXComboBox fx:id="comboBoxItems" focusColor="#078fcb" layoutX="58.0" layoutY="466.0" unFocusColor="#078fcb" />
+      <Label layoutX="20.0" layoutY="470.0" text="Items" />
+      <Label layoutX="618.0" prefHeight="40.0" prefWidth="109.0" text="Logged as Teacher">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnSignOut" layoutX="729.0" layoutY="5.0" prefHeight="28.0" prefWidth="70.0" text="Sign out" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

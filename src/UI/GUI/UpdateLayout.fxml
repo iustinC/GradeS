@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.ControllerAdd">
+   <children>
+      <VBox prefHeight="196.0" prefWidth="300.0" spacing="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <JFXTextField fx:id="textFieldIdUpdate" alignment="CENTER" disable="true" focusColor="#078fcb" labelFloat="true" promptText="ID" unFocusColor="#078fcb" />
+            <JFXTextField fx:id="textFieldNumeUpdate" alignment="CENTER" focusColor="#078fcb" labelFloat="true" promptText="Nume" unFocusColor="#078fcb" />
+            <JFXTextField fx:id="textFieldGrupaUpdate" alignment="CENTER" focusColor="#078fcb" labelFloat="true" promptText="Grupa" unFocusColor="#078fcb" />
+            <JFXTextField fx:id="textFieldEmailUpdate" alignment="CENTER" focusColor="#078fcb" labelFloat="true" promptText="Email" unFocusColor="#078fcb" />
+            <JFXTextField fx:id="textFieldCadruUpdate" alignment="CENTER" focusColor="#078fcb" labelFloat="true" promptText="Cadru didactic" unFocusColor="#078fcb" />
+            <HBox alignment="BOTTOM_CENTER" prefHeight="31.0" prefWidth="280.0" spacing="20.0">
+               <children>
+                  <JFXButton fx:id="btnUpdate" prefWidth="400.0" text="Update" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></JFXButton>
+                  <JFXButton fx:id="btnCancelUp" prefWidth="400.0" text="Cancel" textFill="#fcfcfc">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

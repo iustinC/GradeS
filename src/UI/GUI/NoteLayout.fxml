@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.ControllerNote">
+   <children>
+      <TableView fx:id="tableView" focusTraversable="false" onMouseClicked="#loadData" prefHeight="439.0" prefWidth="388.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tableColumnIdStud" prefWidth="75.0" text="ID Student" />
+            <TableColumn fx:id="tableColumnNrTema" prefWidth="91.0" text="Numar Tema" />
+            <TableColumn fx:id="tableColumnNota" prefWidth="69.0" text="Nota" />
+            <TableColumn fx:id="tableColumnSaptPredarii" prefWidth="77.0" text="Sapt Predarii" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnPrevious" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="123.0" layoutY="459.0" prefHeight="25.0" prefWidth="27.0" text="bbb">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnForward" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="168.0" layoutY="459.0" nodeOrientation="RIGHT_TO_LEFT" text="fd">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" nodeOrientation="LEFT_TO_RIGHT" rotate="180.0" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXComboBox fx:id="comboBoxItems" focusColor="#078fcb" layoutX="52.0" layoutY="460.0" unFocusColor="#078fcb" />
+      <Label layoutX="14.0" layoutY="464.0" text="Items" />
+      <VBox layoutX="414.0" layoutY="62.0" prefHeight="227.0" prefWidth="136.0" spacing="10.0">
+         <children>
+            <JFXTextField fx:id="textFieldIdStud" disable="true" focusColor="#078fcb" labelFloat="true" promptText="ID Student" unFocusColor="#078fcb" />
+            <JFXTextField fx:id="textFieldNrTema" disable="true" focusColor="#078fcb" promptText="Numar Tema" unFocusColor="#078fcb" />
+            <JFXTextField fx:id="textFieldNota" focusColor="#078fcb" labelFloat="true" promptText="Nota" unFocusColor="#078fcb" />
+            <JFXTextField fx:id="textFieldObservatii" focusColor="#078fcb" labelFloat="true" promptText="Observatii" unFocusColor="#078fcb" />
+            <JFXTextField fx:id="textFieldSaptPredarii" focusColor="#078fcb" labelFloat="true" promptText="Saptamana Predarii" unFocusColor="#078fcb" />
+            <JFXButton fx:id="btnUpdate" alignment="TOP_CENTER" onAction="#updateNota" prefHeight="19.0" prefWidth="136.0" text="Update" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <Label layoutX="618.0" prefHeight="40.0" prefWidth="109.0" text="Logged as Teacher">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnSignOut" layoutX="729.0" layoutY="5.0" prefHeight="28.0" prefWidth="70.0" text="Sign out" textFill="WHITE" AnchorPane.topAnchor="6.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <GridPane layoutX="594.0" layoutY="99.0" prefHeight="188.0" prefWidth="192.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="134.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="58.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="59.0" prefWidth="135.0" text="Media studentilor">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label prefHeight="45.0" prefWidth="153.0" text="Cea mai grea tema" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label prefHeight="109.0" prefWidth="219.0" text="Studentii care pot intra in examen" wrapText="true" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label text="Studentii care au predat la timp" wrapText="true" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label text="Topul grupelor" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnMediaStudentilor" contentDisplay="GRAPHIC_ONLY" prefHeight="90.0" prefWidth="109.0" GridPane.columnIndex="1">
+               <graphic>
+                  <OctIconView fill="WHITE" glyphName="GRAPH" size="25" />
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <JFXButton fx:id="btnCeaMaiGrea" contentDisplay="GRAPHIC_ONLY" prefHeight="52.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="EMOTICON_SAD" size="25" />
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <JFXButton fx:id="btnStudentiExamen" contentDisplay="GRAPHIC_ONLY" prefHeight="62.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="EMOTICON_HAPPY" size="25" />
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <JFXButton fx:id="btnPredatLaTimp" contentDisplay="GRAPHIC_ONLY" prefHeight="130.0" prefWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="TIMER_SAND" size="25" />
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <JFXButton fx:id="btnTopulGrupelor" contentDisplay="GRAPHIC_ONLY" prefHeight="89.0" prefWidth="157.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="TROPHY" size="25" />
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </JFXButton>
+         </children>
+      </GridPane>
+      <Label layoutX="447.0" layoutY="20.0" prefHeight="33.0" prefWidth="70.0" text="UPDATE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="648.0" layoutY="51.0" prefHeight="40.0" prefWidth="109.0" text="RAPOARTE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="652.0" layoutY="307.0" text="FILTERS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="575.0" layoutY="340.0" prefHeight="90.0" prefWidth="211.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <JFXComboBox fx:id="comboBoxSaptPredarii" focusColor="#078fcb" onAction="#filter" prefWidth="50.0" unFocusColor="#078fcb" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXComboBox fx:id="comboBoxNota" focusColor="#078fcb" onAction="#filter" prefWidth="50.0" unFocusColor="#078fcb" GridPane.columnIndex="1" />
+            <Label text="Nota" />
+            <Label text="Saptamana predarii" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <VBox layoutX="432.0" layoutY="315.0" prefHeight="139.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <JFXButton fx:id="btnAddMenu" onAction="#addMenu" prefHeight="56.0" prefWidth="70.0" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></JFXButton>
+            <JFXButton fx:id="btnDelete" onAction="#deleteNota" prefHeight="56.0" prefWidth="70.0" text="Delete" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></JFXButton>
+         </children>
+      </VBox>
+      <JFXButton fx:id="btnBack" contentDisplay="GRAPHIC_ONLY" layoutX="622.0" layoutY="430.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" size="25" />
+         </graphic>
+      </JFXButton>
+      <Separator layoutX="652.0" layoutY="79.0" prefHeight="3.0" prefWidth="56.0" />
+      <Separator layoutX="652.0" layoutY="323.0" prefHeight="3.0" prefWidth="41.0" />
+      <Separator layoutX="550.0" layoutY="311.0" orientation="VERTICAL" prefHeight="153.0" prefWidth="0.0" />
+      <Separator layoutX="567.0" layoutY="76.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Separator layoutX="408.0" layoutY="296.0" prefWidth="200.0" />
+      <Separator layoutX="606.0" layoutY="325.0" prefHeight="3.0" prefWidth="134.0" />
+   </children>
+</AnchorPane>

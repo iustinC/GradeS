@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.ControllerAddNote">
+   <children>
+      <TableView fx:id="tableViewTeme" layoutX="522.0" layoutY="59.0" prefHeight="530.0" prefWidth="304.0" AnchorPane.bottomAnchor="43.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+        <columns>
+          <TableColumn fx:id="tableColumnNrTemaForTema" prefWidth="109.66668701171875" text="Numar Tema" />
+          <TableColumn fx:id="tableColumnCerintaForTema" prefWidth="113.0" text="Cerinta" />
+            <TableColumn fx:id="tableColumnDeadlineForTema" prefWidth="79.6666259765625" text="Deadline" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tableViewStudents" layoutX="14.0" layoutY="10.0" prefHeight="534.0" prefWidth="429.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+        <columns>
+          <TableColumn fx:id="tableColumnIdForStud" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tableColumnNumeForStud" prefWidth="75.0" text="Nume" />
+            <TableColumn fx:id="tableColumnGrupaForStud" prefWidth="75.0" text="Grupa" />
+            <TableColumn fx:id="tableColumnEmailForStud" prefWidth="103.0" text="Email" />
+            <TableColumn fx:id="tableColumnCadruForStud" prefWidth="100.0" text="Cadru didactic" />
+        </columns>
+      </TableView>
+      <Label layoutX="530.0" layoutY="16.0" prefHeight="50.0" prefWidth="79.0" text="Nota">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnPreviousSt" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="179.0" layoutY="541.0" prefHeight="25.0" prefWidth="27.0" text="bbb" AnchorPane.bottomAnchor="9.0">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXComboBox fx:id="comboBoxItemsSt" layoutX="69.0" layoutY="532.0" AnchorPane.bottomAnchor="10.0" />
+      <Label layoutX="31.0" layoutY="536.0" text="Items" AnchorPane.bottomAnchor="13.0" />
+      <JFXButton fx:id="btnForwardSt" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="228.0" layoutY="541.0" nodeOrientation="RIGHT_TO_LEFT" text="fd" AnchorPane.bottomAnchor="9.0">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" nodeOrientation="LEFT_TO_RIGHT" rotate="180.0" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnPreviousTeme" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="798.0" layoutY="543.0" prefHeight="25.0" prefWidth="27.0" text="bbb" AnchorPane.bottomAnchor="8.0">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXComboBox fx:id="comboBoxItemsTeme" focusColor="#078fcb" layoutX="943.0" layoutY="541.0" unFocusColor="#078fcb" AnchorPane.bottomAnchor="10.0" />
+      <Label layoutX="905.0" layoutY="548.0" text="Items" AnchorPane.bottomAnchor="13.0" />
+      <JFXButton fx:id="btnForwardTeme" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="847.0" layoutY="543.0" nodeOrientation="RIGHT_TO_LEFT" text="fd" AnchorPane.bottomAnchor="8.0">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" nodeOrientation="LEFT_TO_RIGHT" rotate="180.0" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnCancel" layoutX="485.0" layoutY="523.0" onAction="#close" prefHeight="25.0" prefWidth="175.0" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <VBox layoutX="451.0" layoutY="139.0" prefHeight="302.0" prefWidth="237.0" spacing="30.0">
+         <children>
+            <Label text="NOTA">
+               <VBox.margin>
+                  <Insets left="100.0" right="50.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="comboBoxNota" focusColor="#078fcb" prefHeight="25.0" prefWidth="150.0" unFocusColor="#078fcb">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <Label prefHeight="25.0" prefWidth="185.0" text="SAPTAMANA PREDARII">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Label>
+            <JFXComboBox fx:id="comboBoxSaptPredarii" focusColor="#078fcb" labelFloat="true" prefHeight="25.0" prefWidth="142.0" unFocusColor="#078fcb">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <JFXTextField fx:id="textFieldObservatii" alignment="CENTER" focusColor="#078fcb" labelFloat="true" promptText="Observatii" unFocusColor="#078fcb">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXButton fx:id="btnAddNota" onAction="#addNota" prefHeight="25.0" prefWidth="271.0" text="Add" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="50.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

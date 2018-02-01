@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GUI.ControllerStudent">
+   <children>
+      <JFXTabPane fx:id="tabPane" layoutX="149.0" layoutY="145.0" prefHeight="400.0" prefWidth="600.0" side="BOTTOM" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab style="-fx-padding: 6;" text="Teme">
+              <content>
+                <AnchorPane>
+                     <children>
+                        <TableView fx:id="tableViewTeme" prefHeight="296.0" prefWidth="353.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="10.0">
+                          <columns>
+                            <TableColumn fx:id="tableColumnNrTema" prefWidth="97.0" text="Numar Tema" />
+                            <TableColumn fx:id="tableColumnCerinta" prefWidth="124.0" text="Cerinta" />
+                              <TableColumn fx:id="tableColumnDeadline" prefWidth="75.0" text="Deadline" />
+                          </columns>
+                        </TableView>
+                        <JFXButton fx:id="btnPrevious" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="127.0" layoutY="314.0" prefHeight="25.0" prefWidth="27.0" text="bbb" textFill="WHITE">
+                           <graphic>
+                              <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" size="20" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="btnForward" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="170.0" layoutY="314.0" nodeOrientation="RIGHT_TO_LEFT" text="fd" textFill="WHITE">
+                           <graphic>
+                              <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" nodeOrientation="LEFT_TO_RIGHT" rotate="180.0" size="20" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXComboBox fx:id="comboBoxItems" focusColor="#078fcb" layoutX="60.0" layoutY="314.0" unFocusColor="#078fcb" AnchorPane.leftAnchor="55.0" />
+                        <Label layoutX="21.0" layoutY="319.0" text="Items" AnchorPane.leftAnchor="15.0" />
+                        <Label layoutX="357.0" layoutY="8.0" prefHeight="40.0" prefWidth="109.0" text="Logged as Student" AnchorPane.rightAnchor="84.0" AnchorPane.topAnchor="4.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="btnSignOut1" layoutX="466.0" layoutY="14.0" prefHeight="28.0" prefWidth="70.0" text="Sign out" textFill="WHITE" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXTextField fx:id="textFieldCerintaFil" alignment="CENTER" focusColor="#078fcb" labelFloat="true" layoutX="352.0" layoutY="105.0" onAction="#filter" promptText="Cerinta" unFocusColor="#078fcb" />
+                        <Label layoutX="393.0" layoutY="69.0" text="FILTERS">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="textFieldNrTemaFil" alignment="CENTER" focusColor="#078fcb" layoutX="352.0" layoutY="229.0" onAction="#filter" promptText="Numar tema" unFocusColor="#078fcb" />
+                        <JFXComboBox fx:id="comboBoxDeadline" focusColor="#078fcb" layoutX="376.0" layoutY="177.0" onAction="#filter" prefHeight="25.0" prefWidth="80.0" unFocusColor="#078fcb" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab style="-fx-padding: 6;" text="Note">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableViewNote" layoutX="53.0" layoutY="77.0" prefHeight="333.0" prefWidth="182.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="353.0" AnchorPane.topAnchor="10.0">
+                          <columns>
+                            <TableColumn fx:id="tableColumnNumarTema" prefWidth="98.0" text="Numar Tema" />
+                            <TableColumn fx:id="tableColumnNota" prefWidth="82.0" text="Nota" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="352.0" layoutY="4.0" prefHeight="40.0" prefWidth="109.0" text="Logged as Student" AnchorPane.rightAnchor="84.0" AnchorPane.topAnchor="4.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="btnSignOut2" layoutX="461.0" layoutY="10.0" prefHeight="28.0" prefWidth="70.0" text="Sign out" textFill="WHITE" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab onSelectionChanged="#showData" style="-fx-padding: 6;" text="Informatii ">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="351.0" layoutY="8.0" prefHeight="40.0" prefWidth="109.0" text="Logged as Student" AnchorPane.rightAnchor="84.0" AnchorPane.topAnchor="4.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="btnSignOut3" layoutX="450.0" layoutY="14.0" prefHeight="28.0" prefWidth="70.0" text="Sign out" textFill="WHITE" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="10.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <GridPane layoutX="36.0" layoutY="28.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label fx:id="labelID" text="ID">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelNume" text="Nume" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelEmail" text="Email" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelGrupa" text="Grupa" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelCadru" text="Cadru didactic" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showID" text="Label" GridPane.columnIndex="1" />
+                              <Label fx:id="showNume" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="showGrupa" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="showEmail" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="showCadru" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="labelMedia" text="Media curenta" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="showMedia" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>

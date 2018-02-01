@@ -2,24 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1d653e-77f4-4dd5-9797-d5bf588bd077" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/edit.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/examWhite.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/homework White.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/homework.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/images.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/left-arrow (1).png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/left-arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/note.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/raise-your-hand-to-ask  white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/raise-your-hand-to-ask.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/studenti.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/Images/tema.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/PDFs/ceaMaiGreaTema.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/PDFs/mediaStudentilor.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/PDFs/potIntraInExamen.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/PDFs/temePredateLaTimp.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Resources/PDFs/topulGrupelor.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/note.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/studenti.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/tema.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/AddLayout.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/AddNotaLayout.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/ChartLayout.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/LoginLayout.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/NoteLayout.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/RootLayout.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/StudentLayout.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/StudentsLayout.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/TemeLayout.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/GUI/UpdateLayout.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -304,11 +299,6 @@
             <path>
               <item name="LAB3" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LAB3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="UI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -551,7 +541,7 @@
       <workItem from="1515838145806" duration="282000" />
       <workItem from="1515842874541" duration="843000" />
       <workItem from="1516191077077" duration="110000" />
-      <workItem from="1517502156401" duration="408000" />
+      <workItem from="1517502156401" duration="462000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1509653058875</created>
@@ -665,11 +655,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516191104859</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="PDF Export + Images">
+      <created>1517502585075</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1517502585078</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="405723000" />
+    <option name="totallyTimeSpent" value="405777000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -788,7 +785,8 @@
     <MESSAGE value="Sapt7" />
     <MESSAGE value="-" />
     <MESSAGE value="labu11" />
-    <option name="LAST_COMMIT_MESSAGE" value="labu11" />
+    <MESSAGE value="PDF Export + Images" />
+    <option name="LAST_COMMIT_MESSAGE" value="PDF Export + Images" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
