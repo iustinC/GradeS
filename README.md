@@ -21,7 +21,7 @@ There are 2 account types:
 # Table of Contents
 * [USAGE](#usage)
 * [Requirements](#requirements)
-* [First Use Instructions](#first_use_instructions)
+* [First Use Instructions](#first-use-instructions)
 * [Database](#database)
 
 
