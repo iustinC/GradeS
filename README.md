@@ -32,7 +32,7 @@ First time you can register
 
 or login if you have an account
 
-![login](https://user-images.githubusercontent.com/21144919/35700431-a1a9927c-079b-11e8-87b8-6ebc265aa70a.png)
+![loginframe2](https://user-images.githubusercontent.com/21144919/35773799-183430bc-0965-11e8-9944-d9323cb2bae2.gif)
 
 If you are logged as student you can see all assignments or your grades
 
