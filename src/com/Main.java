@@ -36,6 +36,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.stage.StageStyle;
 
 import javax.tools.Tool;
 import java.io.IOException;
@@ -55,6 +56,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 377, 381);
         scene.getStylesheets().add("Resources/CSS/stylesheets.css");
         primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         //primaryStage.setResizable(false);
         primaryStage.show();
     }
