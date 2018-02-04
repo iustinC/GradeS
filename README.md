@@ -28,7 +28,7 @@ There are 2 account types:
 # USAGE
 First time you can register 
 
-![register](https://user-images.githubusercontent.com/21144919/35700382-77655e24-079b-11e8-9987-66441c1fb5b0.png)
+![registerframe](https://user-images.githubusercontent.com/21144919/35773814-64c5a42e-0965-11e8-9cf1-591556679a89.gif)
 
 or login if you have an account
 
