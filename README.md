@@ -83,7 +83,7 @@ In order to successfully run this  app you need a few things:
 
 # Database
 
-The application connects to a SQL Server database that holds student, assignment, grades and accounts information. The information that it holds is as follows:
+The application connects to a SQL Server database that holds students, assignments, grades and accounts information. The information that it holds is as follows:
 
 1. Studenti
     - idStudent
